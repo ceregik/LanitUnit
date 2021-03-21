@@ -1,3 +1,4 @@
+import java.io.IOException;
 import java.util.Scanner;
 
 public class Calc {
@@ -8,29 +9,37 @@ public class Calc {
         Calc calc = new Calc();
         char action = scanner.nextLine().toCharArray()[0];
         int a = scanner.nextInt();
-        int b = scanner.nextInt();
+        String b = "s";
         System.out.println("" + calc.doAction(action,a,b));
 
     }
 
-    public int doAction(char action, int a,int b){
+    public Object doAction(Object actionO, Object aO,Object bO){
+        try {
+            char action = (char) actionO;
+            int a = (Integer) aO;
+            int b = (Integer) bO;
 
-        switch (action) {
-            case ('+'):
-                return a+b;
-            case ('-'):
-                return a-b;
-            case ('*'):
-                return a*b;
-            case ('/'):
-                try {
-                    return  a/b;
-                } catch (ArithmeticException  e){
-                    System.out.println("division by zero");
-                    return -1;
-                }
+            switch (action) {
+                case ('+'):
+                    return a + b;
+                case ('-'):
+                    return a - b;
+                case ('*'):
+                    return a * b;
+                case ('/'):
+                    try {
+                        return a / b;
+                    } catch (ArithmeticException e) {
+                        System.out.println("division by zero");
+                        return false;
+                    }
+            }
+            return false;
+        }catch (ClassCastException e){
+            System.out.println("ClassCastException");
+            return false;
         }
-        return -1;
     }
 
 }
