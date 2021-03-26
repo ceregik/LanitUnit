@@ -27,15 +27,6 @@ public Object [][] dataPos(){
     }
 
     @DataProvider
-    public Object [][] dataNegativeEquals(){
-        return new Object[][]{
-                {2,2,5,'+'},
-                {2,3,10,'*'},
-                {2,1,0,'-'},
-                {4,2,1,'/'},
-        };
-
-    }@DataProvider
     public Object [][] dataNegative(){
         return new Object[][]{
                 {"we",2,'/'},
@@ -53,17 +44,8 @@ public Object [][] dataPos(){
     }
 
 
-    @Test(dataProvider = "dataNegativeEquals")
-    public void testNegativeEquals(Object a, Object b,Object c, Object action){
-        Assert.assertNotEquals(c,new Calc().doAction(action,a,b),"Не верно");
-    }
-
-    @Test(dataProvider = "dataNegative")
+    @Test(dataProvider = "dataNegative",expectedExceptions = ClassCastException.class)
     public void testNegative(Object a, Object b, Object action) {
-    try {
-        Assert.assertFalse((boolean) new Calc().doAction(action, a, b), "Не верно");
-    }catch (ClassCastException e){
-            System.out.println("ClassCastException Test");
-        }
+       Assert.assertFalse((Boolean) new Calc().doAction(action, a, b));
     }
 }

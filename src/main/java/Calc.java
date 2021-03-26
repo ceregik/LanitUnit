@@ -15,7 +15,6 @@ public class Calc {
     }
 
     public Object doAction(Object actionO, Object aO,Object bO){
-        try {
             char action = (char) actionO;
             int a = (Integer) aO;
             int b = (Integer) bO;
@@ -36,10 +35,6 @@ public class Calc {
                     }
             }
             return false;
-        }catch (ClassCastException e){
-            System.out.println("ClassCastException");
-            return false;
         }
     }
 
-}
