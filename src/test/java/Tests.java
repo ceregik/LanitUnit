@@ -38,12 +38,12 @@ public Object [][] dataPos(){
     }@DataProvider
     public Object [][] dataNegative(){
         return new Object[][]{
-                {"we",2,1,'/'},
-                {4,"2u",1,'/'},
-                {2,"wef",10,'*'},
-                {'*','*','*','*'},
-                {4,2,1,"dsfdf"},
-                {4,"sad",-1,'/'},
+                {"we",2,'/'},
+                {4,"2u",'/'},
+                {2,"wef",'*'},
+                {'*','*','*'},
+                {4,2,"dsfdf"},
+                {4,"sad",'/'},
         };
     }
 
@@ -59,7 +59,7 @@ public Object [][] dataPos(){
     }
 
     @Test(dataProvider = "dataNegative")
-    public void testNegative(Object a, Object b,Object c, Object action) {
+    public void testNegative(Object a, Object b, Object action) {
     try {
         Assert.assertFalse((boolean) new Calc().doAction(action, a, b), "Не верно");
     }catch (ClassCastException e){
